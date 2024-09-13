@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.CSS">
+    <title>Login animado monster</title>            
+
+</head>
+<body>    
+    <div class="cursor pointed"></div>
+    <div class="login">
+        <img src="img/idle/1.png" id="monster" alt="">
+        <form class="formulario">   
+            <label>Usuario</label>
+            <input type="text" id="input-usuario" placeholder="luaramelchor@gmail.com" autocomplete="off">
+            <label>Senha</label>
+            <input type="password" id="input-clave" placeholder="*******">
+            <button type="submit">Login</button>
+            <div class="links">
+                <button class="glow-on-hover" type="button">Cadastre-se</button>
+            </div>
+        </form>
+    </div>
+    <script src="javascript.JS"></script>
+   
+    <style>
+        body {
+            -webkit-animation: colorchange 60s infinite; 
+            animation: colorchange 60s infinite;
+        }
+        @-webkit-keyframes colorchange {
+             0%  {background: #0D0D0D;}
+            25%  {background: #934EA6;}
+            50%  {background: #F2F2F2;}
+            75%  {background: #84498C;}
+            100% {background: #0D0D0D;}
+        }
+        </style>
+</body>
+</html>
