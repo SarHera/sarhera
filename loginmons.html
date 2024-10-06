@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="monstrin.ico" type="favicon">
+    <link rel="stylesheet" href="loginmons.css">
+    <title>Login Monstro</title>
+
+    <style>
+        #mundo{
+            width:200px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        #monster{
+            top: calc(100px);
+            right: auto;
+            background: url(idle/6.png) 0 0 no-repeat;
+            width: 187px;
+            height: 368px;
+            
+            animation: run 500ms infinite steps(2);
+        }
+
+
+        @keyframes run{
+            from{ background-position: 0;}
+            to{ background-position: -374px;}
+
+        }
+    </style>
+
+</head>
+<body>
+    <div id="mundo">
+        <div id="monster"></div>
+    </div>
+    <div class="content">
+        <h1>Cadastro</h1>
+        <form id="form">
+            <div>
+                <input type="text" placeholder="Digite seu Nome" class="inputs required" oninput="nameValidate">
+                <span class="span-required">Ter no minimo 3 caracteres</span>
+            </div>
+            <div>
+                <input type="email" placeholder="Digite seu E-mail" class="inputs required" oninput="emailValidate">
+                <span class="span-required"></span>
+            </div>
+            <div>
+                <input type="password" placeholder="Digite sua Senha" class="inputs required" oninput="mainPasswordValidate">
+                <span class="span-required">Ter no minimo 6 caracteres</span>
+            </div>
+            <div>
+                <input type="password" placeholder="Digite novamente" class="inputs required" oninput="comparePassword">
+                <span class="span-required"></span>
+            </div>
+            <p>Sexo:</p>
+            <div class="box-select">
+                <div>
+                    <input type="radio" id="m" value="m" name="sexo">
+                    <label for="m">Masculino</label>
+                </div>
+                <div>
+                    <input type="radio" id="f" value="f" name="sexo">
+                    <label for="f">Feminino</label>
+                </div>
+                <div>
+                    <input type="radio" id="o" value="o" name="sexo">
+                    <label for="o">Outro</label>
+                </div>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+<script>
+    const form = document.getElementById('form');
+    const campos = document.querySelectorAll('.required');
+    const spans = document.querySelectorAll('.span-required');
+    const emailRegex = /^\s*(?!.*[._-]{2})[\w\.-]+@([\w-])+\.+[\w-]{2,24}\s*$/;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        nameValidate();
+        emailValidate();
+        mainPasswordValidate();
+        comparePassword();
+
+    });
+
+    function setError(index){
+        campos(index).style.border = '2px solid #e63636';
+        spans(index).style.display = 'block';
+    }
+
+    function removeError(index){
+        campos(index).style.border = '';
+        spans(index).style.display = 'none';
+    }
+
+
+    function nameValidate(){
+        if(campos[0].value.length < 3)
+        {
+          setError(0);
+        }
+        else
+        {
+            removeError(0);
+        }
+    }
+
+    function emailValidate(){
+        if(!emailRegex.test(campos[1].value))
+        {
+            setError(1);
+        }
+        else
+        {
+            removeError(1);
+        }
+    }
+
+    function mainPasswordValidate(){
+        if(campos[2].value.length > 6)
+        {
+            setError(2);
+        }
+        else
+        {
+            removeError(2);
+            comparePassword();
+        }
+    
+    }
+    function comparePassword(){
+        if(campos[2].value === campos[3].value && campos[3].value.length >= 6)
+        {
+            removeError(3);
+        }
+        else
+        {
+            setError(3);
+        }
+    }
+
+
+</script>
+</body>
+</html>
